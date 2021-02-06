@@ -34,3 +34,17 @@ export const requestSinglePokemon = pokeId => dispatch => {
     )
   )
 }
+
+export const postPokemon = pokemon => dispatch => {
+  return (
+    APIUtil.postPokemon(pokemon)
+    .then(
+      addedPoke => {
+        dispatch(receiveSinglePokemon(addedPoke))  // this should include items and moves from :show
+      },
+      err => {
+        console.log('error posting pokemon')
+      }
+    )
+  )
+}

@@ -50,3 +50,8 @@ class PokemonDetail extends React.Component {
 }
 
 export default PokemonDetail
+
+// todo
+// 1. toggle item details
+// 2. background color based on poke type
+// 3. reset pokemon state when getting details for new pokemon
