@@ -18,8 +18,8 @@ const PokemonForm = props => {
       poke_type: curPokeType,
       attack: curAttack,
       defense: curDefense,
-      // move_1: curMove1,
-      // move_2: curMove2
+      move_1: curMove1,
+      move_2: curMove2
     }
     
     props.postPokemon(pokeToAdd)
@@ -28,7 +28,8 @@ const PokemonForm = props => {
         props.history.push(`pokemon/${addedPoke.pokemon.id}`)
       },
       err => {
-        console.log('error posting and redirecting to pokemon')
+        debugger
+        console.log('error redirecting to added poke')
       }
     )
   }

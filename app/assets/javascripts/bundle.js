@@ -142,6 +142,7 @@ var postPokemon = function postPokemon(pokemon) {
 
       return addedPoke;
     }, function (err) {
+      debugger;
       console.log('error posting pokemon');
     });
   };
@@ -505,14 +506,15 @@ var PokemonForm = function PokemonForm(props) {
       image_url: curImageUrl,
       poke_type: curPokeType,
       attack: curAttack,
-      defense: curDefense // move_1: curMove1,
-      // move_2: curMove2
-
+      defense: curDefense,
+      move_1: curMove1,
+      move_2: curMove2
     };
     props.postPokemon(pokeToAdd).then(function (addedPoke) {
       props.history.push("pokemon/".concat(addedPoke.pokemon.id));
     }, function (err) {
-      console.log('error posting and redirecting to pokemon');
+      debugger;
+      console.log('error redirecting to added poke');
     });
   };
 

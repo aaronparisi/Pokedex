@@ -44,6 +44,7 @@ export const postPokemon = pokemon => dispatch => {
         return addedPoke
       },
       err => {
+        debugger
         console.log('error posting pokemon')
       }
     )
