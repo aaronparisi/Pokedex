@@ -12,6 +12,7 @@ class Api::PokemonController < ApplicationController
   end
 
   def create
+    sleep 0.5
     @pokemon = Pokemon.new(poke_params)
     if @pokemon.save
       PokeMove.create(move_id: 1, pokemon_id: @pokemon.id)

@@ -41,6 +41,7 @@ export const postPokemon = pokemon => dispatch => {
     .then(
       addedPoke => {
         dispatch(receiveSinglePokemon(addedPoke))  // this should include items and moves from :show
+        return addedPoke
       },
       err => {
         console.log('error posting pokemon')

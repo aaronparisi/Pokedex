@@ -139,6 +139,8 @@ var postPokemon = function postPokemon(pokemon) {
   return function (dispatch) {
     return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["postPokemon"](pokemon).then(function (addedPoke) {
       dispatch(receiveSinglePokemon(addedPoke)); // this should include items and moves from :show
+
+      return addedPoke;
     }, function (err) {
       console.log('error posting pokemon');
     });
@@ -507,7 +509,11 @@ var PokemonForm = function PokemonForm(props) {
       // move_2: curMove2
 
     };
-    props.postPokemon(pokeToAdd);
+    props.postPokemon(pokeToAdd).then(function (addedPoke) {
+      props.history.push("pokemon/".concat(addedPoke.pokemon.id));
+    }, function (err) {
+      console.log('error posting and redirecting to pokemon');
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

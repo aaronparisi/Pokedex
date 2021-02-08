@@ -23,6 +23,14 @@ const PokemonForm = props => {
     }
     
     props.postPokemon(pokeToAdd)
+    .then(
+      addedPoke => {
+        props.history.push(`pokemon/${addedPoke.pokemon.id}`)
+      },
+      err => {
+        console.log('error posting and redirecting to pokemon')
+      }
+    )
   }
 
   return (
