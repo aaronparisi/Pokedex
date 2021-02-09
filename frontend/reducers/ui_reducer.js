@@ -1,15 +1,11 @@
-const uiReducer = ({ state = {}, action }) => {
-  // Object.freeze(state)
-  // switch (action.type) {
-  //   // case RECEIVE_ALL_POKEMON:
-  //   //   return state;  // * I don't think we'd ever hit this?
-  //   case RECEIVE_SINGLE_POKEMON:
-  //     return state; // todo modify
-  //   default:
-  //     return state;
-  // }
+import {combineReducers} from 'redux';
 
-  return {
-    // todo modify
-  }
-}
+import errorsReducer from './errors_reducer';
+import loadingReducer from './loading_reducer'
+
+const uiReducer = combineReducers({
+  errors: errorsReducer,
+  loading: loadingReducer
+})
+
+export default uiReducer;

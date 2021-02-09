@@ -9,6 +9,22 @@ const PokemonForm = props => {
   const [curMove1, setCurMove1] = useState('')
   const [curMove2, setCurMove2] = useState('')
 
+  const errorsDisplay = () => {
+    
+    if (props.errors) {
+      return (
+        <ul>
+          {Object.values(props.errors).map((err, idx) => {
+            return <li key={idx}>{err}</li>
+          })}
+        </ul>
+      )
+    } else {
+      return
+    }
+    
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
 
@@ -28,8 +44,7 @@ const PokemonForm = props => {
         props.history.push(`pokemon/${addedPoke.pokemon.id}`)
       },
       err => {
-        debugger
-        console.log('error redirecting to added poke')
+        props.receivePokemonErrors(err)
       }
     )
   }
@@ -37,6 +52,9 @@ const PokemonForm = props => {
   return (
     <div className="pokemon-detail">
       <img src="/assets/pokemon-logo.svg" alt="Copyright of Nintendo Pokemon"/>
+
+      {errorsDisplay()}
+
       <form
         className="pokemon-form"
         onSubmit={handleSubmit}
