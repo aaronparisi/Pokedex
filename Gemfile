@@ -33,6 +33,7 @@ gem 'faker'
 
 gem 'jquery-rails'
 gem 'activerecord-reset-pk-sequence'
+gem 'annotate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

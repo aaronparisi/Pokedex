@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_184711) do
+ActiveRecord::Schema.define(version: 2021_02_10_003303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,16 +30,9 @@ ActiveRecord::Schema.define(version: 2020_10_13_184711) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_moves_on_name", unique: true
-  end
-
-  create_table "poke_moves", force: :cascade do |t|
-    t.integer "move_id"
-    t.integer "pokemon_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["move_id"], name: "index_poke_moves_on_move_id"
-    t.index ["pokemon_id"], name: "index_poke_moves_on_pokemon_id"
+    t.bigint "pokemon_id"
+    t.integer "damage"
+    t.index ["pokemon_id"], name: "index_moves_on_pokemon_id"
   end
 
   create_table "pokemons", force: :cascade do |t|
@@ -52,4 +45,5 @@ ActiveRecord::Schema.define(version: 2020_10_13_184711) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "moves", "pokemons"
 end

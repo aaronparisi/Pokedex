@@ -1,17 +1,11 @@
-import { RECEIVE_ALL_POKEMON, RECEIVE_SINGLE_POKEMON } from './../actions/pokemon_actions';
+import {combineReducers} from 'redux';
 
-const pokemonReducer = (state = {}, action) => {
-  Object.freeze(state);
+import pokemonIndexReducer from './pokemon_index_reducer'
+import currentPokemonReducer from './current_pokemon_reducer'
 
-  switch (action.type) {
-    case RECEIVE_ALL_POKEMON:
-      return Object.assign({}, action.pokemon, state);
-    case RECEIVE_SINGLE_POKEMON:
-      let id = action.pokemon.pokemon.id
-      return Object.assign({}, state, { [id]: action.pokemon.pokemon })
-    default:
-      return state;
-  }
-}
-  
+const pokemonReducer = combineReducers({
+  index: pokemonIndexReducer,
+  currentPokemon: currentPokemonReducer
+})
+
 export default pokemonReducer;

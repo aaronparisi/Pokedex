@@ -1,8 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import ItemDetailContainer from '../items/item_detail_container'
-import ItemIndexContainer from '../items/item_index_container'
+import ItemDetailContainer from './items/item_detail_container'
+import ItemIndexContainer from './items/item_index_container'
+import LoadingPokeball from './loading_pokeball'
 
 class PokemonDetail extends React.Component {
   constructor(props) {
@@ -14,13 +15,16 @@ class PokemonDetail extends React.Component {
   }
   
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.pokemonId !== prevProps.match.params.pokemonId) {
+    if (prevProps && this.props.match.params.pokemonId !== prevProps.match.params.pokemonId) {
       this.props.requestSinglePokemon(this.props.match.params.pokemonId)
     }
   }
 
   detailsDisplay() {
-    if (this.props.pokemon) {
+    if (this.props.loadingSingle) {
+      return <LoadingPokeball />
+    }
+    else if (this.props.pokemon) {
       return (
         <div className="pokemon-detail">
           <figure>
@@ -50,8 +54,3 @@ class PokemonDetail extends React.Component {
 }
 
 export default PokemonDetail
-
-// todo
-// 1. toggle item details
-// 2. background color based on poke type
-// 3. reset pokemon state when getting details for new pokemon

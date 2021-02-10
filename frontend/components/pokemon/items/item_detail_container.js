@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectSingleItem } from '../../reducers/selectors'
+import { selectSingleItem } from '../../../reducers/pokemon_selectors'
 
 import ItemDetail from './item_detail'
 

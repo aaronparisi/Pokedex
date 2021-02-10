@@ -38,9 +38,7 @@ end
 
 
 ActiveRecord::Base.transaction do
-  
-  PokeMove.destroy_all
-  PokeMove.reset_pk_sequence
+
   Move.destroy_all
   Move.reset_pk_sequence
   Pokemon.destroy_all
@@ -1412,16 +1410,10 @@ ActiveRecord::Base.transaction do
       poke_type: stats['poke_type'], 
       image_url: "#{num}.svg")
     stats['moves'].each do |move|
-      if !Move.where(name: move).present?
-        Move.create!(name: move)
-      end
-      PokeMove.create!(pokemon_id: poke.id, move_id: Move.find_by(name: move).id)
+      Move.create!(name: move, damage: 100, pokemon_id: poke.id)  # todo fill in damages??
     end
   end
 
-
-
-  
   Pokemon.all.each do |pokemon|
     3.times do  
       create_random_item!(pokemon) 
