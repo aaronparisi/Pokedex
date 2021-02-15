@@ -1,7 +1,7 @@
 class Api::ItemsController < ApplicationController
   def index
     sleep 2
-    @items = Item.all
+    @items = Item.where(pokemon_id: params[:id])
     render :index
   end
 
@@ -10,6 +10,23 @@ class Api::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     render :show
   end
+
+  def create_several
+    params[:items].each do |item|
+      @item = Item.new(name: item.name, price: item.price, happiness: item.happiness, image_url: item.imageUrl, pokemon_id: params[:id])
+
+      if @item.save
+        next
+      else
+        render json: @item.errors.full_messages, status: 422
+      end
+    end
+
+    @items = Item.where(pokemon_id: params[:id])
+
+    render :index
+  end
+  
     
   def create
     sleep 1

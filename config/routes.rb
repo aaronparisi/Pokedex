@@ -5,12 +5,20 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do 
     resources :pokemon, only: [:index, :show, :create, :update] do
       member do
-        resources :moves, only: [:index, :create]
-        resources :items, only: [:index, :create]
+        resources :moves, only: [:index, :create] do
+          collection do
+            post '/create_several', to: 'api/moves#createSeveral'
+          end
+        end
+        
+        resources :items, only: [:index, :create] do
+          collection do
+            post '/create_several', to: 'api/items#createSeveral'
+          end
+        end
       end
     end
 
-    resources :moves, only: [:show, :update]
     resources :items, only: [:show, :update]
   end
 end

@@ -7,20 +7,17 @@ import { selectPokemonItems, selectPokemonMoveNames, selectSinglePokemon } from 
 
 const mapStateToProps = (state, ownProps) => {
   let pokemon = undefined;
-  let moves = undefined;
-  let items = undefined;
+  let editing = false;
   
   if (ownProps.match.params.pokemonId) {
-    pokemon = selectSinglePokemon(state, parseInt(ownProps.match.params.pokemonId))  // todo make this request happen conditionally
-    moves = selectPokemonMoveNames(state)
-    items = selectPokemonItems(state)
+    pokemon = selectSinglePokemon(state, parseInt(ownProps.match.params.pokemonId))
+    editing = true;
   }
 
   return {
     errors: state.ui.errors.responseJSON,
     pokemon: pokemon,
-    moves: moves,
-    items: items
+    editing: editing
   }
 }
 

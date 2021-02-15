@@ -1,11 +1,12 @@
-import { RECEIVE_SINGLE_POKEMON } from './../actions/pokemon_actions';
+import { RECEIVE_POKEMON_ITEMS, CLEAR_POKEMON_ITEMS } from './../actions/item_actions';
 
 const itemsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type){
-  case RECEIVE_SINGLE_POKEMON:
-    // return Object.assign({}, state, action.items)
-    return action.pokemon.items
+  case RECEIVE_POKEMON_ITEMS:
+    return Object.assign({}, action.items)  // * we can just obliterate the old state
+  case CLEAR_POKEMON_ITEMS:
+    return {}
   default:
     return state;
   }

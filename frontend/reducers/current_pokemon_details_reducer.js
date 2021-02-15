@@ -5,8 +5,7 @@ const currentPokemonDetailsReducer = (state = {}, action) => {
 
   switch(action.type) {
     case RECEIVE_SINGLE_POKEMON:
-      let id = action.pokemon.pokemon.id
-      return Object.assign({}, state, { [id]: action.pokemon })
+      return Object.assign({}, state, action.singlePoke)
     default:
       return state
   }

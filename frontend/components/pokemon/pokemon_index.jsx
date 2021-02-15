@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import PokemonIndexItem from './pokemon_index_item'
 import PokemonDetailContainer from './pokemon_detail_container'
@@ -33,8 +33,25 @@ class PokemonIndex extends React.Component{
             </ul>
           </section>
   
-          <Route exact path="/pokemon/:pokemonId" component={PokemonDetailContainer} />
-          <Route path="/pokemon/:pokemonId/edit" component={PokemonFormContainer} />
+          <Switch>
+            <Route path="/pokemon/:pokemonId" render={() => {
+              <div>
+                <Switch>
+                  <Route path="/pokemon/:pokemonId/edit-pokemon" component={PokemonFormContainer} />
+                  <Route path="/pokemon/:pokemonId/" component={PokemonContainer} />
+                </Switch>
+                <Switch>
+                  <Route path="/pokemon/:pokemonId/edit-moves" component={PokemonMovesFormContainer} />
+                  <Route path="/pokemon/:pokemonId/" component={PokemonMovesContainer} />
+                </Switch>
+                <Switch>
+                  <Route path="/pokemon/:pokemonId/edit-items" component={PokemonItemsFormContainer} />
+                  <Route path="/pokemon/:pokemonId/" component={PokemonItemsContainer} />
+                </Switch>
+              </div>
+            }} />
+            <Route path="/pokemon/:pokemonId/edit" component={PokemonFormContainer} />
+          </Switch>
           <Route exact path="/" component={PokemonFormContainer} />
         </div>
       )

@@ -12,12 +12,21 @@ class PokemonDetail extends React.Component {
 
   componentDidMount() {
     this.props.requestSinglePokemon(this.props.match.params.pokemonId)
+    this.props.requestPokemonMoves(this.props.match.params.pokemonId)
+    this.props.requestPokemonItems(this.props.match.params.pokemonId)
   }
   
   componentDidUpdate(prevProps) {
     if (prevProps && this.props.match.params.pokemonId !== prevProps.match.params.pokemonId) {
       this.props.requestSinglePokemon(this.props.match.params.pokemonId)
+      this.props.requestPokemonMoves(this.props.match.params.pokemonId)
+      this.props.requestPokemonItems(this.props.match.params.pokemonId)
     }
+  }
+
+  componentDidUnmount() {
+    this.props.clearPokemonMoves()
+    this.props.clearPokemonItems()
   }
 
   detailsDisplay() {

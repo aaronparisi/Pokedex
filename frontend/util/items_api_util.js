@@ -12,6 +12,18 @@ export const getSingleItem = itemId => {
   })
 }
 
+export const postPokemonItems = (items, pokeId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `api/pokemon/${pokeId}/items/create_several`,
+    data: {
+      items: {
+        items
+      }
+    }
+  })
+}
+
 export const postItem = item => {
   return $.ajax({
     method: 'POST',

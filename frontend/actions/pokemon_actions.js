@@ -21,14 +21,14 @@ export const startLoadingSinglePokemon = () => {
 export const receiveAllPokemon = pokemon => {
   return {
     type: RECEIVE_ALL_POKEMON,
-    pokemon: pokemon
+    pokemon
   }
 }
 
 export const receiveSinglePokemon = singlePoke => {
   return {
     type: RECEIVE_SINGLE_POKEMON,
-    pokemon: singlePoke
+    singlePoke
   }
 }
 
@@ -37,7 +37,7 @@ export const requestAllPokemon = () => dispatch => {
 
   return APIUtil.getAllPokemon()
     .then(pokemon => {
-      dispatch(receiveAllPokemon(pokemon))
+      dispatch(receiveAllPokemon(pokemon.pokemon))
     })
 }
 
@@ -48,7 +48,7 @@ export const requestSinglePokemon = pokeId => dispatch => {
     APIUtil.getSinglePokemon(pokeId)
     .then(
       singlePoke => {
-        dispatch(receiveSinglePokemon(singlePoke))
+        dispatch(receiveSinglePokemon(singlePoke.pokemon))
       },
       err => {
         dispatch(receivePokemonErrors(err))
@@ -62,7 +62,7 @@ export const postPokemon = pokemon => dispatch => {
     APIUtil.postPokemon(pokemon)
     .then(
       addedPoke => {
-        dispatch(receiveSinglePokemon(addedPoke))  // this should include items and moves from :show
+        dispatch(receiveSinglePokemon(addedPoke))
         return addedPoke
       },
       err => {
@@ -77,7 +77,7 @@ export const putPokemon = pokemon => dispatch => {
     APIUtil.putPokemon(pokemon)
     .then(
       addedPoke => {
-        dispatch(receiveSinglePokemon(addedPoke))  // this should include items and moves from :show
+        dispatch(receiveSinglePokemon(addedPoke))
         return addedPoke
       },
       err => {

@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => {
 
 }
 
-export default connect(mapSateToProps)(ItemIndex)
+export default connect(mapSateToProps, null)(ItemIndex)

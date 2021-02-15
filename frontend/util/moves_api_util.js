@@ -12,6 +12,18 @@ export const getSingleMove = moveId => {
   })
 }
 
+export const postPokemonMoves = (moves, pokeId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `api/pokemon/${pokeId}/moves/create_several`,
+    data: {
+      moves: {
+        moves
+      }
+    }
+  })
+}
+
 export const postMove = move => {
   return $.ajax({
     method: 'POST',
